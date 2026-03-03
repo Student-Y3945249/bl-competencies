@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans min-h-screen overflow-x-hidden text-black;
+    /* READABILITY TOGGLE: Increase the value for a lighter/clearer bg, decrease for a subtle/faded bg */
+    --bg-overlay-opacity: 0.2;
+  }
+
+  /* Fixed Background Layer */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('bg-hero.webp');
+    background-size: cover;
+    background-position: center top;
+    /* Center top usually works well for mountain/skyline horizons */
+    background-repeat: no-repeat;
+    z-index: -10;
+    pointer-events: none;
+  }
+
+  /* Readability Overlay Layer */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.4),
+        rgba(243, 244, 246, 0.9));
+    opacity: var(--bg-overlay-opacity);
+    z-index: -9;
+    pointer-events: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-[0.05em];
+  }
+}
+
+@layer components {
+  .competency-block {
+    @apply bg-white border border-black p-6 transition-all duration-200 ease-in-out;
+  }
+
+  .competency-block-interactive:hover {
+    @apply -translate-y-0.5 shadow-[4px_4px_0_0_#000];
+  }
+
+  .btn {
+    @apply font-bold py-2 px-6 border border-black transition-all duration-200 ease-in-out inline-flex items-center justify-center gap-2 relative;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-black;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-black;
+  }
+
+  .btn:not(:disabled):hover {
+    @apply shadow-[4px_4px_0_0_#000] -translate-y-0.5;
+  }
+
+  .btn:not(:disabled):active {
+    @apply translate-y-0 shadow-none;
+  }
+
+  .btn:disabled {
+    @apply opacity-50 cursor-not-allowed bg-gray-100;
+  }
+
+  .badge {
+    @apply text-xs font-bold px-2 py-1 border border-black uppercase tracking-wider inline-flex items-center gap-1;
+  }
+
+  .badge-pending {
+    @apply bg-accent text-black;
+  }
+
+  .badge-completed {
+    @apply bg-green-400 text-black;
+  }
+
+  .badge-not-started {
+    @apply bg-gray-200 text-black;
+  }
+}
