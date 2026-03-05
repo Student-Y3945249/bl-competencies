@@ -14,7 +14,7 @@ const Navbar = () => {
     const [isSnowing, setIsSnowing] = useState(false);
 
     useEffect(() => {
-        console.log('Navbar Loaded (v1.0.1 - GH Subdirectory Fix)');
+        console.log('Navbar Loaded (v1.0.2 - Direct Hash Fix)');
         // Listen to a dummy doc or just general connectivity via the Firestore SDK metadata
         // For a more robust check on restricted networks, we'll monitor the snapshot metadata
         const unsub = onSnapshot(doc(db, '_internal_', 'connectivity'), { includeMetadataChanges: true }, (doc) => {
@@ -39,12 +39,12 @@ const Navbar = () => {
             <nav className="border-b-2 border-black bg-white sticky top-0 z-50">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16 sm:h-20 items-center">
-                        <Link to="/" className="flex items-center gap-2 sm:gap-3 group cursor-pointer">
+                        <a href="#/" className="flex items-center gap-2 sm:gap-3 group cursor-pointer no-underline text-black">
                             <div className="bg-black p-1.5 transition-transform group-hover:rotate-12 shadow-[3px_3px_0_0_#FFC107] border-2 border-black">
                                 <Logo className="w-8 h-8 sm:w-10 h-10" invert={true} />
                             </div>
                             <span className="font-bold text-lg sm:text-xl uppercase tracking-[0.15em] hidden xs:block">Ben Lairig</span>
-                        </Link>
+                        </a>
 
                         <div className="flex items-center gap-3 sm:gap-6">
                             <div className={`flex items-center gap-1.5 px-2 py-1 border border-black text-[10px] items-center font-bold uppercase tracking-wider ${isOnline ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
@@ -57,7 +57,10 @@ const Navbar = () => {
                                     onDoubleClick={() => setIsSnowing(!isSnowing)}
                                 >
                                     <p className="text-sm font-bold">{currentUser.displayName}</p>
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider">{currentUser.role}</p>
+                                    <div className="flex items-center justify-end gap-1">
+                                        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">v1.0.2</p>
+                                        <p className="text-xs text-gray-500 uppercase tracking-wider">{currentUser.role}</p>
+                                    </div>
                                 </div>
                             )}
 

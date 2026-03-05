@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Student-Y3945249.github.io/bl-competencies",
+  "homepage": "https://training.benlairig.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
